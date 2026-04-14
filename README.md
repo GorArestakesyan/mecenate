@@ -72,12 +72,20 @@ src/
 ### 1. Clone and install
 
 ```bash
-git clone <repo-url>
+git clone https://github.com/GorArestakesyan/mecenate
 cd mecenate
 yarn
 ```
 
-### 2. Configure environment variables
+### 2. Prebuild the app
+
+Since this project uses React Native 0.81 and Expo SDK 54, prebuild the native code:
+
+```bash
+npx expo prebuild
+```
+
+### 3. Configure environment variables
 
 Copy the example file and fill in your values:
 
@@ -95,26 +103,26 @@ cp .env.example .env.development
 
 Three env files are supported: `.env.development`, `.env.staging`, `.env.production`
 
-### 3. Run
+### 4. Run
+
+After prebuilding, run the native apps:
 
 ```bash
-# Development (default)
+# Start Metro bundler in background
 yarn start
 
-# Specific platform
-yarn ios
-yarn android
+# In another terminal, run the native app
+npx expo run:ios      # iOS
+npx expo run:android  # Android
 ```
-
-Scan the QR code with Expo Go.
 
 ## Available Scripts
 
 | Script | Description |
 |---|---|
 | `yarn start` | Start Metro bundler (development) |
-| `yarn ios` | Open on iOS simulator |
-| `yarn android` | Open on Android emulator |
+| `npx expo run:ios` | Build and run on iOS simulator |
+| `npx expo run:android` | Build and run on Android emulator |
 | `yarn lint` | Run ESLint |
 | `yarn format` | Format all source files with Prettier |
 
