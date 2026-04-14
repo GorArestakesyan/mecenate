@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { View } from "react-native";
 import { ButtonAction } from "@ui-kit";
 import { styles } from "./PostStats.styles";
@@ -8,13 +8,28 @@ interface IPostStatsProps {
   commentsCount: number;
   isLiked: boolean;
   onLike: () => void;
+  onCommentPress?: () => void;
+  likeWrapper?: (children: ReactNode) => ReactNode;
 }
 
-const PostStats = ({ likesCount, commentsCount, isLiked, onLike }: IPostStatsProps) => (
-  <View style={styles.row}>
+const PostStats = ({
+  likesCount,
+  commentsCount,
+  isLiked,
+  onLike,
+  onCommentPress,
+  likeWrapper,
+}: IPostStatsProps) => {
+  const likeButton = (
     <ButtonAction variant="like" count={likesCount} isActive={isLiked} onPress={onLike} />
-    <ButtonAction variant="comment" count={commentsCount} />
-  </View>
-);
+  );
+
+  return (
+    <View style={styles.row}>
+      {likeWrapper ? likeWrapper(likeButton) : likeButton}
+      <ButtonAction variant="comment" count={commentsCount} onPress={onCommentPress} />
+    </View>
+  );
+};
 
 export default PostStats;

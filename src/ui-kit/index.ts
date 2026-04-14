@@ -19,3 +19,7 @@ export type { TabBarProps, Tab } from "./TabBar";
 export type { InputTextProps } from "./InputText";
 export type { ISpacePlaceholderProps } from "./SpacePlaceholder";
 export type { LoadingIndicatorProps } from "./LoadingIndicator";
+export { ButtonSend } from "./ButtonSend";
+export type { ButtonSendProps } from "./ButtonSend";
+export { ButtonCommentLike } from "./ButtonCommentLike";
+export type { ButtonCommentLikeProps } from "./ButtonCommentLike";

@@ -1,7 +1,10 @@
 import React from "react";
-import { View } from "react-native";
+import { View, Pressable } from "react-native";
 import type { IPost } from "@common/types/api";
 import { styles } from "./PostCard.styles";
+import { useNavigation } from "@react-navigation/native";
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
+import type { RootStackParamList } from "@navigation";
 
 import { SpacePlaceholder } from "@ui-kit";
 
@@ -15,11 +18,20 @@ interface IPostCardProps {
   onLike: (id: string) => void;
 }
 
+type Nav = NativeStackNavigationProp<RootStackParamList>;
+
 const PostCard = ({ post, onLike }: IPostCardProps) => {
   const isPostPaid = post.tier === "paid";
+  const navigation = useNavigation<Nav>();
+
+  const handlePress = () => {
+    if (!isPostPaid) {
+      navigation.navigate("PostDetail", { postId: post.id, initialPost: post });
+    }
+  };
 
   return (
-    <View style={styles.card}>
+    <Pressable onPress={handlePress} style={styles.card}>
       <PostHeader author={post.author} />
       <PostCover uri={post.coverUrl} isPaid={isPostPaid} />
       <View style={styles.body}>
@@ -38,10 +50,11 @@ const PostCard = ({ post, onLike }: IPostCardProps) => {
             commentsCount={post.commentsCount}
             isLiked={post.isLiked}
             onLike={() => onLike(post.id)}
+            onCommentPress={handlePress}
           />
         )}
       </View>
-    </View>
+    </Pressable>
   );
 };
 

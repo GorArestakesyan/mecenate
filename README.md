@@ -1,17 +1,28 @@
-# Mecenate — Feed Screen
+# Mecenate — Feed & Post Detail
 
-Test assignment for Mecenate: a feed screen for a creator-support platform (Patreon/Boosty analogue), built with React Native + Expo.
+Test assignment for Mecenate: a feed and post detail interface for a creator-support platform (Patreon/Boosty analogue), built with React Native + Expo.
 
 ## Features
 
+### Feed Screen
 - Post feed with author avatar, name, cover image, preview text, likes and comments counters
 - Cursor-based infinite pagination (load more on scroll)
 - Pull-to-refresh
 - Paid post overlay (`tier: "paid"`) — blurred cover with skeleton placeholders and donate CTA
 - Error state with retry button
 - Tab filtering — All / Free / Paid posts
-- Like toggle with optimistic updates
+- Like toggle with optimistic updates and haptic feedback
 - Empty state with navigation back to All tab
+- Tap posts to view full details
+
+### Post Detail Screen
+- Full post content with author details and cover image
+- Comments list with infinite pagination
+- Comment composer with send button
+- Like counts and toggle with animated feedback
+- Sort comments by newest or oldest
+- Real-time updates via WebSocket (likes and new comments)
+- Comment like counts (client-side)
 
 ## Stack
 
@@ -21,8 +32,11 @@ Test assignment for Mecenate: a feed screen for a creator-support platform (Patr
 | Mobile | React Native 0.81 + Expo SDK 54 |
 | Server state | TanStack React Query v5 |
 | UI state | MobX 6 + mobx-react-lite |
-| Navigation | React Navigation — Material Top Tabs |
+| Navigation | React Navigation 7 (Native Stack + Material Top Tabs) |
 | HTTP | Axios |
+| Real-time | WebSocket (native) |
+| Animations | React Native Reanimated v4 |
+| Haptics | Expo Haptics |
 | Design tokens | Custom constants (Colors, Spacing, Typography) |
 | Fonts | Manrope (via @expo-google-fonts) |
 | Icons | react-native-svg + react-native-svg-transformer |
@@ -32,19 +46,19 @@ Test assignment for Mecenate: a feed screen for a creator-support platform (Patr
 ```
 src/
 ├── assets/          # SVG icons and images
-├── common/          # Shared TypeScript types
+├── common/          # Shared TypeScript types and entities
 ├── config/          # Environment config (API URL, user ID)
-├── constants/       # Design tokens: Colors, Spacing, Typography
+├── constants/       # Design tokens: Colors, Spacing, Typography, Routes
+├── navigation/      # React Navigation setup,
 ├── providers/       # React context providers (Services, Query, Navigation)
-├── screens/         # Screen-level components (FeedScreen)
-├── services/        # DI container + Axios + API methods
+├── screens/         # Screen-level components,
+├── services/        # DI container + Axios + API + WebSocket,
+├── stores/          # MobX storesm
 ├── ui-kit/          # Reusable design-system components
 └── ui-modules/
     └── feed/
-        ├── components/  # Feed-specific components
-        ├── hooks/       # useFeed, useLike
-        ├── navigation/  # Tab navigator + screens
-        └── store/       # FeedStore (MobX)
+        ├── components/  # Feed-specific components (Feed, Post, Comment UI)
+        └── hooks/       # Feed hooks (useFeed, useLike, useComments, useWebSocket)
 ```
 
 ## Prerequisites
@@ -107,13 +121,17 @@ Scan the QR code with Expo Go.
 ## API
 
 Base URL: `https://k8s.mectest.ru/test-app`  
+WebSocket URL: `wss://k8s.mectest.ru/test-app/ws?token=<uuid>`  
 Full spec: `https://k8s.mectest.ru/test-app/openapi.json`
 
 Authentication: `Authorization: Bearer <uuid>`
+
+### REST Endpoints
 
 | Endpoint | Method | Description |
 |---|---|---|
 | `/posts` | GET | Paginated feed, supports `cursor`, `limit`, `tier` |
 | `/posts/:id` | GET | Single post |
 | `/posts/:id/like` | POST | Toggle like (optimistic update) |
-| `/posts/:id/comments` | GET | Paginated comments |
+| `/posts/:id/comments` | GET | Paginated comments, supports `cursor`, `limit` |
+| `/posts/:id/comments` | POST | Add comment (body: `{ text }`) |
