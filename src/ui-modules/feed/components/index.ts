@@ -5,3 +5,6 @@ export * from "./PostStats";
 export * from "./FeedTabBar";
 export * from "./FeedContent";
 export * from "./PostContent";
+export * from "./CommentItem";
+export * from "./CommentInput";
+export * from "./PostDetailBody";

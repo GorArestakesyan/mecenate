@@ -1,6 +1,6 @@
 import React from "react";
-import { FeedContent } from "../../components/FeedContent";
-import type { TFeedTabScreenProps } from "../types";
+import { TFeedTabScreenProps } from "@navigation/types";
+import { FeedContent } from "@ui-modules/feed";
 
 export const FeedAllScreen: React.FC<TFeedTabScreenProps<"All">> = () => <FeedContent />;
 

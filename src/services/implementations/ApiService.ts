@@ -1,5 +1,5 @@
+import { PostsApi } from "@services/api/PostsApi";
 import { AxiosService } from "./AxiosService";
-import { PostsApi } from "./api/PostsApi";
 
 export class ApiService {
   readonly posts: PostsApi;

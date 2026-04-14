@@ -1,7 +1,7 @@
 import React from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { styles } from "./FeedScreen.styles";
-import { FeedTabNavigator } from "@ui-modules/feed";
+import { FeedTabNavigator } from "@navigation/FeedTabNavigator";
 
 const FeedScreen = () => (
   <SafeAreaView style={styles.root} edges={["top"]}>

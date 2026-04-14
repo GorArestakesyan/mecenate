@@ -4,16 +4,16 @@ import { FlatList, RefreshControl } from "react-native";
 import { FeedFooter } from "../FeedFooter";
 import { useFeedContentStyles } from "./useFeedContent.styles";
 import { Colors } from "@constants";
-import type { FeedTier } from "../../navigation/types";
 import type { IPost } from "@common/types/api";
 import { FeedLoader } from "@ui-kit";
 import { FeedError } from "../FeedError";
 import { FeedEmpty } from "../FeedEmpty";
 import { PostCard } from "../PostCard";
 import { useFeed, useLike } from "@ui-modules/feed/hooks";
+import { TFeedTier } from "@navigation/types";
 
 interface IFeedContentProps {
-  tier?: FeedTier;
+  tier?: TFeedTier;
   onHomePress?: () => void;
 }
 

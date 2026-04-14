@@ -1,8 +1,8 @@
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { useServices } from "../../../providers/ServicesProvider/ServicesProvider";
-import type { FeedTier } from "../navigation/types";
+import { TFeedTier } from "@navigation/types";
 
-export function useFeed(tier?: FeedTier) {
+export function useFeed(tier?: TFeedTier) {
   const { apiService } = useServices();
 
   const query = useInfiniteQuery({

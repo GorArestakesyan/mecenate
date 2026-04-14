@@ -1,6 +1,6 @@
 import { makeAutoObservable } from "mobx";
 
-// Reserved for future feed UI state (scroll position, modal visibility, etc.)
+/** Reserved for future feed UI state (scroll position, modal visibility, etc.) */
 export class FeedStore {
   constructor() {
     makeAutoObservable(this);

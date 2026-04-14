@@ -39,6 +39,8 @@ export interface IComment {
   author: IAuthor;
   text: string;
   createdAt: string;
+  likesCount?: number;
+  isLiked?: boolean;
 }
 
 export interface IComments {

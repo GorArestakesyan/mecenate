@@ -1,11 +1,11 @@
 import React from "react";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import { FEED_TABS } from "../constants";
 import { styles } from "./FeedTabNavigator.styles";
-import type { TFeedTabParamList } from "../types";
 import { FeedAllScreen, FeedFreeScreen, FeedPaidScreen } from "../FeedTabScreens";
 import { FeedTabBar } from "@ui-modules/feed/components";
+import { TFeedTabParamList } from "@navigation/types";
+import { FEED_TABS } from "@constants";
 
 const Tab = createMaterialTopTabNavigator<TFeedTabParamList>();
 
