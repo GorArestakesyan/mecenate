@@ -21,6 +21,7 @@ module.exports = function (api) {
             '@icons':      './src/assets/icons',
             '@screens':    './src/screens',
             '@images':     './src/assets/images',
+            '@navigation': './src/navigation',
           },
         },
       ],
@@ -32,6 +33,7 @@ module.exports = function (api) {
           allowUndefined: false,
         },
       ],
+      'react-native-worklets/plugin',
     ],
   };
 };

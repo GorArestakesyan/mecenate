@@ -8,7 +8,7 @@ import {
   Manrope_600SemiBold,
   Manrope_700Bold,
 } from "@expo-google-fonts/manrope";
-import { FeedScreen } from "@screens";
+import { RootNavigator } from "@navigation";
 import AppProviders from "@providers/AppProviders";
 
 export default function App() {
@@ -30,7 +30,7 @@ export default function App() {
   return (
     <AppProviders>
       <StatusBar style="dark" />
-      <FeedScreen />
+      <RootNavigator />
     </AppProviders>
   );
 }
