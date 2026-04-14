@@ -4,11 +4,12 @@ import { BlurView } from "expo-blur";
 import { MoneyIcon } from "@icons";
 import { Button } from "@ui-kit";
 import { styles } from "./PaidOverlay.styles";
+import { IS_IOS } from "@constants";
 
 const PaidOverlay = () => {
   return (
     <React.Fragment>
-      <BlurView intensity={40} style={[StyleSheet.absoluteFillObject, styles.blurred]}>
+      <BlurView intensity={IS_IOS ? 40 : 160} style={[StyleSheet.absoluteFillObject, styles.blurred]} >
         <View style={styles.box}>
           <View style={styles.iconBox}>
             <MoneyIcon width={20} height={20} />

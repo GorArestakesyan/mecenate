@@ -9,10 +9,6 @@ export const styles = StyleSheet.create({
     zIndex: 9,
     overflow: "hidden",
   },
-  frost: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: "rgba(255, 255, 255, 0.72)",
-  },
   text: {
     ...Typography.paidOverlay,
     color: Colors.white,
