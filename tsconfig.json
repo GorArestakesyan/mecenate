@@ -1,6 +1,31 @@
 {
   "extends": "expo/tsconfig.base",
   "compilerOptions": {
-    "strict": true
-  }
+    "strict": true,
+    "ignoreDeprecations": "5.0",
+    "baseUrl": ".",
+    "paths": {
+      "@screens": ["src/screens/index.ts"],
+      "@screens/*": ["src/screens/*"],
+      "@ui-kit": ["src/ui-kit/index.ts"],
+      "@ui-kit/*": ["src/ui-kit/*"],
+      "@services": ["src/services/index.ts"],
+      "@services/*": ["src/services/*"],
+      "@common": ["src/common/types/index.ts"],
+      "@common/*": ["src/common/*"],
+      "@config": ["src/config/env.ts"],
+      "@config/*": ["src/config/*"],
+      "@constants": ["src/constants/index.ts"],
+      "@constants/*": ["src/constants/*"],
+      "@providers": ["src/providers/index.tsx"],
+      "@providers/*": ["src/providers/*"],
+      "@ui-modules/*": ["src/ui-modules/*"],
+      "@env": ["src/types/env.d.ts"],
+      "@icons": ["src/assets/icons/index.ts"],
+      "@icons/*": ["src/assets/icons/*"],
+      "@images": ["src/assets/images/index.ts"],
+      "@images/*": ["src/assets/images/*"]
+    }
+  },
+  "include": ["**/*.ts", "**/*.tsx", "src/types/**/*.d.ts"]
 }
