@@ -1,9 +1,9 @@
 import { useMutation, useQueryClient, InfiniteData } from "@tanstack/react-query";
-import { useServices } from "../../../providers/ServicesProvider/ServicesProvider";
-import type { FeedTier } from "../navigation/types";
 import type { IPosts, IPost } from "@common/types/api";
+import { TFeedTier } from "@navigation/types";
+import { useServices } from "@services";
 
-export function useLike(tier?: FeedTier) {
+export function useLike(tier?: TFeedTier) {
   const { apiService } = useServices();
   const queryClient = useQueryClient();
   const queryKey = ["feed", tier ?? "all"] as const;
