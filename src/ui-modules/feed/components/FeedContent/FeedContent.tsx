@@ -39,6 +39,8 @@ const FeedContent = ({ tier, onHomePress }: IFeedContentProps) => {
   return (
     <FlatList<IPost>
       data={posts}
+      initialNumToRender={5}
+      maxToRenderPerBatch={6}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => <PostCard post={item} onLike={toggleLike} />}
       onEndReached={() => {
